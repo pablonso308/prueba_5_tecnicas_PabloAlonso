@@ -5,4 +5,5 @@ public interface ServiceStrategy {
     void serve();
 }
 
+
 // Modificación en la clase Restaurant para usar Strategy
