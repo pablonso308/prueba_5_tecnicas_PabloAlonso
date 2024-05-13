@@ -1,0 +1,35 @@
+@startuml
+' Factory Pattern
+interface Restaurant {
+    +serveCustomers(): void
+}
+class FastFoodRestaurant implements Restaurant
+class ThemeRestaurant implements Restaurant
+class FineDiningRestaurant implements Restaurant
+
+class RestaurantFactory {
+    +getRestaurant(type: String): Restaurant
+}
+
+' Singleton Pattern
+class RestaurantManager {
+    -static instance: RestaurantManager
+    -factory: RestaurantFactory
+    +getInstance(): RestaurantManager
+    +createRestaurant(type: String): Restaurant
+}
+
+RestaurantFactory --> Restaurant
+RestaurantManager --> RestaurantFactory
+
+' Strategy Pattern
+interface ServiceStrategy {
+    +serve(): void
+}
+class CasualServiceStrategy implements ServiceStrategy
+class ThemedServiceStrategy implements ServiceStrategy
+class FineDiningServiceStrategy implements ServiceStrategy
+
+Restaurant o-- ServiceStrategy
+
+@enduml

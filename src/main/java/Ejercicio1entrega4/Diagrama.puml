@@ -1,0 +1,24 @@
+@startuml
+
+interface Componente {
+    {abstract} void mostrar()
+}
+
+class Restaurante {
+    - String nombre
+    - List<Componente> componentes
+    + Restaurante(String nombre)
+    + void agregar(Componente componente)
+    + void mostrar()
+}
+
+class Plato {
+    - String nombre
+    + Plato(String nombre)
+    + void mostrar()
+}
+
+Restaurante --|> Componente
+Plato --|> Componente
+
+@enduml

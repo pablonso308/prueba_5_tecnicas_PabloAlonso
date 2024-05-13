@@ -1,0 +1,43 @@
+@startuml
+' Composite Pattern
+interface RestaurantComponent {
+    +serveCustomers(): void
+}
+class IndividualRestaurant implements RestaurantComponent
+class RestaurantGroup implements RestaurantComponent {
+    -restaurants: List<RestaurantComponent>
+    +addRestaurant(restaurant: RestaurantComponent): void
+    +removeRestaurant(restaurant: RestaurantComponent): void
+}
+
+RestaurantGroup "1" *-- "many" RestaurantComponent : contains
+
+' Adapter Pattern
+interface BookingSystem {
+    +bookTable(): void
+}
+class ExternalBookingSystem {
+    +makeReservation(): void
+}
+class BookingAdapter implements BookingSystem {
+    -externalSystem: ExternalBookingSystem
+}
+
+BookingAdapter .right.> ExternalBookingSystem : adapts
+
+' Observer Pattern
+interface Subject {
+    +registerObserver(observer: Observer): void
+    +removeObserver(observer: Observer): void
+    +notifyObservers(message: String): void
+}
+interface Observer {
+    +update(message: String): void
+}
+class MenuUpdates implements Subject
+class Customer implements Observer
+
+Subject "1" *-- "many" Observer : notifies
+MenuUpdates .down.> Customer : updates
+
+@enduml

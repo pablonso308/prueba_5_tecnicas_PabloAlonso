@@ -1,0 +1,57 @@
+@startuml
+' Command Pattern
+interface Command {
+    +execute(): void
+}
+class BookTableCommand implements Command
+class OrderFoodCommand implements Command
+class CancelReservationCommand implements Command
+class Restaurant {
+    +bookTable(): void
+    +orderFood(): void
+    +cancelReservation(): void
+}
+
+Command <|-- BookTableCommand
+Command <|-- OrderFoodCommand
+Command <|-- CancelReservationCommand
+Command o-- Restaurant
+
+' Mediator Pattern
+interface Mediator {
+    +bookTable(): void
+    +orderFood(): void
+    +cancelBooking(): void
+}
+class RestaurantMediator implements Mediator {
+    -kitchen: Kitchen
+    -customerService: CustomerService
+    -deliveryService: DeliveryService
+}
+class Kitchen
+class CustomerService
+class DeliveryService
+
+Mediator <|-- RestaurantMediator
+RestaurantMediator --> Kitchen
+RestaurantMediator --> CustomerService
+RestaurantMediator --> DeliveryService
+
+' State Pattern
+interface TableState {
+    +handle(table: Table): void
+}
+class FreeState implements TableState
+class ReservedState implements TableState
+class OccupiedState implements TableState
+class Table {
+    -state: TableState
+    +setState(state: TableState): void
+}
+
+TableState <|-- FreeState
+TableState <|-- ReservedState
+TableState <|-- OccupiedState
+Table "1" *- "1" TableState : state
+
+@enduml
