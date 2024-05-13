@@ -5,4 +5,9 @@ public class FineDiningRestaurant implements Restaurant {
     public void serveCustomers() {
         System.out.println("Offering a fine dining experience.");
     }
+
+    @Override
+    public void setServiceStrategy(ThemedServiceStrategy themedServiceStrategy) {
+
+    }
 }

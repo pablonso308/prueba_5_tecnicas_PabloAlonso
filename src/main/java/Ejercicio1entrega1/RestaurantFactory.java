@@ -10,7 +10,7 @@ public class RestaurantFactory {
     static {
         register("fast", FastFoodRestaurant::new);
         register("theme", ThemeRestaurant::new);
-        register("luxury", LuxuryRestaurant::new);
+        register("luxury", FineDiningRestaurant::new);
     }
 
     public static void register(String type, Supplier<Restaurant> constructor) {
